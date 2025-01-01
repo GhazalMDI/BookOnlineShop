@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Account.apps.AccountConfig',
     'Home.apps.HomeConfig',
+    'Book.apps.BookConfig',
     'boto3',
-    'storages'
+    'storages',
+    'django_jalali'
 
 ]
 
