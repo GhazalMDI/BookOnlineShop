@@ -19,7 +19,7 @@ class User(AbstractBaseUser):
     def has_perm(self,perm,obj=None):
         return True
 
-    def has_module_perm(self,app_lable):
+    def has_module_perms(self,app_lable):
         return True
 
     def __str__(self):

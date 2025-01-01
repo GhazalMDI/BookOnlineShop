@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Account.apps.AccountConfig',
-    'Home.apps.HomeConfig'
+    'Home.apps.HomeConfig',
+    'boto3',
+    'storages'
+
 ]
 
 MIDDLEWARE = [
@@ -72,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Main.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -82,7 +82,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -102,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -113,7 +111,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -126,3 +123,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'Account.User'
+
+# STORAGE
+STORAGES = {
+    'default': {'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage'},
+    'staticfiles': {'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage'}
+}
+AWS_ACCESS_KEY_ID = '2923546e-8ad3-4a62-8e22-208cce72b01a'
+AWS_SECRET_ACCESS_KEY = '815be517d25ba472ca30eaac5971620c44e872265bd2399698b36259442b332c'
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
+AWS_STORAGE_BUCKET_NAME = 'bookonlinestore'
+AWS_S3_FILE_OVERWRITE = True
