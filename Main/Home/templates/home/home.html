@@ -2,24 +2,31 @@
 
 
 {% block content %}
-{% for b in banners %}
-<div class="container">
-<img src="{{ b.image.url }}" class="m-auto" alt="{{ b.alt }}">
-</div>
+    {% for b in banners %}
+        <div class="container">
+            <div class="row">
+                <img src="{{ b.image.url }}" class="m-auto" alt="{{ b.alt }}">
+            </div>
+        </div>
 
-{% endfor %}
+    {% endfor %}
 
-    <div class="container">
+    <div class="container d-flex direction-row-revers">
     <div class="row">
-
+        <p>جدیدترین کتاب ها</p>
     </div>
+        <div class="row d-flex justify-content-center">
+            {% for book in books %}
+                <div class="card" style="width: 18rem;">
+{#                <img src="{{ book.image.url }}" class="card-img-top" alt="...">#}
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.book_name }}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
-{#<div class="card" style="width: 18rem;">#}
-{#  <img src="..." class="card-img-top" alt="...">#}
-{#  <div class="card-body">#}
-{#    <h5 class="card-title">Card title</h5>#}
-{#    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
-{#    <a href="#" class="btn btn-primary">Go somewhere</a>#}
-{#  </div>#}
-{#</div>#}

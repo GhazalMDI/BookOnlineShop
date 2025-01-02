@@ -13,7 +13,7 @@ class HomeView(View):
             new_books = books.order_by('-created')[:10]
             if banners := Banner.objects.all():
                 ctx = {
-                    'books':new_books
+                    'books': new_books,
                     'banners': banners
                 }
                 return render(request, self.TEMPLATE_NAME, ctx)
