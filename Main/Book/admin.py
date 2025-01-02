@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Book.models import Book, Publisher, Author, ParentCategory, ChildCategory
+from Book.models import Book, Publisher, Author, ParentCategory, ChildCategory, Genre
 
 
 @admin.register(Book)
@@ -32,4 +32,33 @@ class AuthorAdmin(admin.ModelAdmin):
 
     prepopulated_fields = {
         'slug': ('first_name', 'last_name')
+    }
+
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ('genre_name', 'slug')
+    list_filter = ('genre_name',)
+    prepopulated_fields = {
+        'slug': ('genre_name',)
+    }
+
+
+@admin.register(ParentCategory)
+class ParentCategoryAdmin(admin.ModelAdmin):
+    list_display = ('parent_category_name', 'slug', 'is_available')
+    list_filter = ('parent_category_name', 'is_available')
+
+    prepopulated_fields = {
+        'slug': ('parent_category_name',)
+    }
+
+
+@admin.register(ChildCategory)
+class ChildCategoryAdmin(admin.ModelAdmin):
+    list_display = ('child_category_name','slug','parent', 'is_available')
+    list_filter = ('parent', 'child_category_name', 'is_available')
+
+    prepopulated_fields = {
+        'slug': ('child_category_name',)
     }

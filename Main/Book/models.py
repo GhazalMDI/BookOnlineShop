@@ -16,6 +16,7 @@ class Book(models.Model):
     publisher = models.ForeignKey('Publisher', models.PROTECT, 'publisher_books', verbose_name='ناشر')
     author = models.ForeignKey('Author', models.PROTECT, 'author_books', verbose_name='نویسنده')
     genre = models.ManyToManyField('Genre')
+    image = models.ImageField(upload_to='book/image',null=True,blank=True)
     parent_category = models.ForeignKey('ParentCategory', models.PROTECT, 'parent_cat_book',
                                         verbose_name='دسته بندی اصلی')
     child_category = models.ManyToManyField('ChildCategory')
@@ -81,6 +82,7 @@ class ChildCategory(models.Model):
     parent = models.ForeignKey('ParentCategory', models.PROTECT, 'childToParentCategory', verbose_name='دسته بندی والد')
     child_category_name = models.CharField(max_length=20, verbose_name='نام دسته ی فرزند')
     is_available = models.BooleanField(default=True, verbose_name='در دسترس')
+    slug = models.SlugField(unique=True,null=True,blank=True, allow_unicode=True, max_length=150, verbose_name='اسلاگ')
 
     def __str__(self):
         return self.child_category_name
